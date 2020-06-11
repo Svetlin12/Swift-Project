@@ -1,3 +1,5 @@
+import Dice
+
 // cup contains the 13 dice for the game
 public class Cup {
     private var dice: [Dice]
