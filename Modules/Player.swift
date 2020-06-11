@@ -1,3 +1,5 @@
+import Foundation
+
 public class Player {
     var brainScore: Int
     var lastBrainScore: Int
