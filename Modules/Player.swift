@@ -1,4 +1,6 @@
 import Foundation
+import Dice
+import Cup
 
 public class Player {
     var brainScore: Int
