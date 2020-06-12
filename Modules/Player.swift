@@ -1,8 +1,4 @@
-import Foundation
-import Dice
-import Cup
-
-public class Player {
+public class Player: Comparable {
     var brainScore: Int
     var lastBrainScore: Int
     var shotgunScore: Int
@@ -21,7 +17,15 @@ public class Player {
         self.lastBrainScore = 0
     }
     
-    public func playOneTurn() {
+    public static func < (lhs: Player, rhs: Player) -> Bool {
+        return lhs.id < rhs.id
+    }
+    
+    public static func == (lhs: Player, rhs: Player) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func playOneTurn() {
         guard let currentDice = cup.pickDice() else {
             return
         }
@@ -68,11 +72,12 @@ public class Player {
     public func playRound() {
         var input = ""
         lastBrainScore = brainScore
-        while (input != "No" && input != "n" && input != "no" && input != "N")
+        while (input != "No" && input != "n" && input != "no" && input != "N" && cup.currentDice.count != 0)
         {
             playOneTurn()
             if shotgunScore >= 3 {
                 print("Player \(name) has lost his round because he has \(shotgunScore) shotguns!")
+                cup.reset()
                 shotgunScore = 0
                 brainScore = lastBrainScore
                 return
@@ -85,6 +90,7 @@ public class Player {
             print("input: [\(input)]")
         }
         shotgunScore = 0
+        cup.reset()
         print("Player \(name)'s brain score after this round: \(brainScore).")
     }
 }
