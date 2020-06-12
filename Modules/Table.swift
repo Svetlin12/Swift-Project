@@ -1,3 +1,5 @@
+import Players
+
 public class Table {
     var playersInfo: Players
     var playerMaxStringCnt: Int = 0
