@@ -1,3 +1,5 @@
+import Player
+
 public class Players {
     var players: [Player]
     
