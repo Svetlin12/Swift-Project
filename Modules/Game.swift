@@ -4,6 +4,7 @@ enum GameError: Error {
     case lessThanTwoPlayers
     case moreThanEightPlayers
     case invalidChoiceNumber
+    case invalidInput
 }
 
 public class Game {
@@ -14,13 +15,16 @@ public class Game {
         do {
             try startMenu()
         } catch GameError.invalidChoiceNumber {
-            print("The entered option is incorrect: try typing '1' or '2'")
+            print("The entered option is incorrect: try typing '1' or '2'!")
         } catch GameError.lessThanTwoPlayers {
-            print("The game must be played by more than 1 player")
+            print("The game must be played by more than 1 player!")
         } catch GameError.moreThanEightPlayers {
-            print("The game must be played by less than 9 players")
+            print("The game must be played by less than 9 players!")
+        } catch GameError.invalidInput {
+            print("Invalid input was given!")
+        } catch PlayerError.invalidInput {
+            print("Invalid input was given while playing the game!")
         } catch {
-            
         }
     }
     
@@ -31,7 +35,7 @@ public class Game {
         print("Select option: ", terminator: "")
         
         guard let choice = readLine() else {
-            return
+            throw GameError.invalidInput
         }
         
         if choice != "1" && choice != "2" {
@@ -40,10 +44,10 @@ public class Game {
         
         if choice == "2" {
             print("You can check out the rules on the following address: https://en.wikipedia.org/wiki/Zombie_Dice")
-            print("type something when you are ready: ", terminator: "")
+            print("press any key when you are ready: ", terminator: "")
             
             guard let _ = readLine() else {
-                return
+                throw GameError.invalidInput
             }
         }
         
@@ -53,6 +57,10 @@ public class Game {
             throw GameError.lessThanTwoPlayers
         } catch GameError.moreThanEightPlayers {
             throw GameError.moreThanEightPlayers
+        } catch GameError.invalidInput {
+            throw GameError.invalidInput
+        } catch PlayerError.invalidInput {
+            throw PlayerError.invalidInput
         }
     }
     
@@ -60,7 +68,7 @@ public class Game {
         print("Enter the names of the players each space-separated:")
         
         guard var players = readLine()?.components(separatedBy: " ") else {
-            return
+            throw GameError.invalidInput
         }
         
         if players.count < 2 {
@@ -77,8 +85,14 @@ public class Game {
             convertedPlayers.append(.init(name: player))
         }
         let game = GameHandler(players: convertedPlayers)
-        print("==============================")
-        game.playGame()
+        print("==================================================================")
+        
+        do {
+            try game.playGame()
+        } catch PlayerError.invalidInput {
+            throw PlayerError.invalidInput
+        }
+        
         print("Thanks for playing the game!")
     }
 }
