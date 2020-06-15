@@ -1,10 +1,8 @@
-import Players
-
 public class Table {
     var playersInfo: Players
     var playerMaxStringCnt: Int = 0
     
-    init (players: Players) {
+    public init (players: Players) {
         playersInfo = players
         for player in players.players {
             playerMaxStringCnt = max(playerMaxStringCnt, player.name.count)
