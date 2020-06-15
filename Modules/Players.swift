@@ -6,10 +6,6 @@ public class Players: Sequence {
     }
     
     public init (_ players: [Player]) {
-        //error
-//        if players.count < 2 || players.count > 8 {
-//            return
-//        }
         self.players = players
     }
     
