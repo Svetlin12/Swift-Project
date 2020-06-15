@@ -1,5 +1,9 @@
 import Foundation
 
+public enum PlayerError: Error {
+    case invalidInput
+}
+
 public class Player: Comparable {
     var brainScore: Int
     var lastBrainScore: Int
@@ -32,7 +36,7 @@ public class Player: Comparable {
             return
         }
         
-        print("==============================")
+        print("==================================================================")
         print("Picked dice: ", terminator: " ")
         var hand = [String]()
         for dice in currentDice {
@@ -67,13 +71,13 @@ public class Player: Comparable {
             cnt += 1
         }
         print()
-        print("==============================")
+        print("==================================================================")
         
         brainScore += brainCnt
         shotgunScore += shotgunCnt
     }
     
-    public func playRound() {
+    public func playRound() throws {
         print("It's player \(name)'s turn")
         var input = ""
         lastBrainScore = brainScore
@@ -82,7 +86,7 @@ public class Player: Comparable {
             playOneTurn()
             if shotgunScore >= 3 {
                 print("Player \(name) has lost his/her round because he has \(shotgunScore) shotguns!")
-                print("==============================")
+                print("==================================================================")
                 cup.reset()
                 shotgunScore = 0
                 brainScore = lastBrainScore
@@ -90,13 +94,13 @@ public class Player: Comparable {
             }
             print("Player \(name)'s current score: brains: \(brainScore), shotguns: \(shotgunScore), dice left: \(cup.currentDice.count).\nDo you wish to proceed? [Yes/No]")
             guard let answer = readLine() else {
-                return
+                throw PlayerError.invalidInput
             }
             input = answer
         }
         shotgunScore = 0
         cup.reset()
         print("Player \(name)'s brain score after this round: \(brainScore).")
-        print("==============================")
+        print("==================================================================")
     }
 }
