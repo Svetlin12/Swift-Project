@@ -77,6 +77,7 @@ public class Game {
             convertedPlayers.append(.init(name: player))
         }
         let game = GameHandler(players: convertedPlayers)
+        print("==============================")
         game.playGame()
         print("Thanks for playing the game!")
     }
