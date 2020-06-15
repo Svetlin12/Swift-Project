@@ -1,5 +1,3 @@
-import Dice
-
 // cup contains the 13 dice for the game
 public class Cup {
     private var dice: [Dice]
@@ -35,11 +33,8 @@ public class Cup {
         return result
     }
     
-    public func addRunner(runner: Dice?) {
-        guard let toAdd = runner else {
-            return
-        }
-        currentDice.append(toAdd)
+    public func addRunner(runner: Dice) {
+        currentDice.append(runner)
     }
     
     public func reset() {
