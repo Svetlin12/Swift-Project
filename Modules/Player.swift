@@ -32,6 +32,7 @@ public class Player: Comparable {
             return
         }
         
+        print("==============================")
         print("Picked dice: ", terminator: " ")
         var hand = [String]()
         for dice in currentDice {
@@ -66,19 +67,22 @@ public class Player: Comparable {
             cnt += 1
         }
         print()
+        print("==============================")
         
         brainScore += brainCnt
         shotgunScore += shotgunCnt
     }
     
     public func playRound() {
+        print("It's player \(name)'s turn")
         var input = ""
         lastBrainScore = brainScore
         while (input != "No" && input != "n" && input != "no" && input != "N" && cup.currentDice.count != 0)
         {
             playOneTurn()
             if shotgunScore >= 3 {
-                print("Player \(name) has lost his round because he has \(shotgunScore) shotguns!")
+                print("Player \(name) has lost his/her round because he has \(shotgunScore) shotguns!")
+                print("==============================")
                 cup.reset()
                 shotgunScore = 0
                 brainScore = lastBrainScore
@@ -93,5 +97,6 @@ public class Player: Comparable {
         shotgunScore = 0
         cup.reset()
         print("Player \(name)'s brain score after this round: \(brainScore).")
+        print("==============================")
     }
 }
