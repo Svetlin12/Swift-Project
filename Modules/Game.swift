@@ -1,10 +1,15 @@
-public enum GameError: Error {
+import Foundation
+
+enum GameError: Error {
     case lessThanTwoPlayers
     case moreThanEightPlayers
     case invalidChoiceNumber
 }
 
 public class Game {
+    public init() {
+    }
+    
     public func play() {
         do {
             try startMenu()
@@ -76,6 +81,3 @@ public class Game {
         print("Thanks for playing the game!")
     }
 }
-
-let g = Game()
-g.play()
