@@ -8,16 +8,22 @@ public class GameHandler {
         self.table = Table(players: self.players)
     }
     
-    public func playGame() {
+    public func playGame() throws {
         while winners.players.count == 0 {
             for player in players {
-                player.playRound()
+                print("Current score:")
+                table.printTable()
+                
+                do {
+                    try player.playRound()
+                } catch PlayerError.invalidInput {
+                    throw PlayerError.invalidInput
+                }
+                
                 if player.brainScore >= 13 {
                     winners.addPlayer(player)
                 }
                 table.updatePlayerInfo(player)
-                print("Current score:")
-                table.printTable()
             }
         }
         
