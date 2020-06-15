@@ -1,3 +1,5 @@
+import Foundation
+
 public class Player: Comparable {
     var brainScore: Int
     var lastBrainScore: Int
@@ -87,7 +89,6 @@ public class Player: Comparable {
                 return
             }
             input = answer
-            print("input: [\(input)]")
         }
         shotgunScore = 0
         cup.reset()
