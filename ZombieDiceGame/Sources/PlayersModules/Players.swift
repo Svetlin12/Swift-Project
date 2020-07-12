@@ -9,6 +9,7 @@ public class Players: Sequence {
         self.players = players
     }
     
+    // defined for Sequence protocol
     public func makeIterator() -> IndexingIterator<[Player]> {
         return players.makeIterator()
     }
