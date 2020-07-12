@@ -2,9 +2,9 @@ import TableModule
 import PlayersModules
 
 public class GameHandler {
-    let players: Players
-    let table: Table
-    var winners: Players = Players()
+    private let players: Players
+    private let table: Table
+    private var winners: Players = Players()
     
     public init(players: [Player]) {
         self.players = Players(players)
@@ -41,4 +41,3 @@ public class GameHandler {
         }
     }
 }
-
