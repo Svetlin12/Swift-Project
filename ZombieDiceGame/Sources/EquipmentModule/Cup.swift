@@ -5,6 +5,7 @@ public class Cup {
 
     public init() {
         dice = [Dice]()
+        
         for i in 1...13 {
             if (i < 7) {
                 dice.append(GreenDice.init())
@@ -16,6 +17,7 @@ public class Cup {
                 dice.append(RedDice.init())
             }
         }
+        
         currentDice = dice
     }
     
