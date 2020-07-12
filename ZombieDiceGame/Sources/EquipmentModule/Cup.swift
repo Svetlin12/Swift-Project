@@ -1,7 +1,7 @@
 // cup contains the 13 dice for the game
 public class Cup {
     private var dice: [Dice]
-    var currentDice: [Dice]
+    private var currentDice: [Dice]
 
     public init() {
         dice = [Dice]()
@@ -37,6 +37,7 @@ public class Cup {
         currentDice.append(runner)
     }
     
+    // refill the cup with dice again
     public func reset() {
         currentDice = dice
     }
