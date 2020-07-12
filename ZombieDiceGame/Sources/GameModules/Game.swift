@@ -1,6 +1,6 @@
 import PlayersModules
 
-enum GameError: Error {
+public enum GameError: Error {
     case lessThanTwoPlayers
     case moreThanEightPlayers
     case invalidChoiceNumber
@@ -11,6 +11,7 @@ public class Game {
     public init() {
     }
     
+    // play the whole game - from the start menu until the end
     public func play() {
         do {
             try startMenu()
@@ -28,7 +29,8 @@ public class Game {
         }
     }
     
-    func startMenu() throws {
+    // display start menu and handle user input and then call playGame in order to start the game
+    private func startMenu() throws {
         print("This is an implementation of the game Zombie Dice created by Svetlin Popivanov")
         print("1. Start Game")
         print("2. I want to know how to play the game")
@@ -64,7 +66,7 @@ public class Game {
         }
     }
     
-    func playGame() throws {
+    private func playGame() throws {
         print("Enter the names of the players each space-separated:")
         
         guard var players = readLine()?.components(separatedBy: " ") else {
