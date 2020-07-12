@@ -45,8 +45,16 @@ public class Game {
         }
         
         if choice == "2" {
-            print("You can check out the rules on the following address: https://en.wikipedia.org/wiki/Zombie_Dice")
-            print("press any key when you are ready: ", terminator: "")
+            print("==================================================================")
+            print("In short, here are the basic concepts of the game:")
+            print("1. You start with 13 dice and you roll 3 of them each turn until you have 3 or more shotguns or are out of dice (each round for a player consists of turns where he picks 3 dice or less if he has less than 3 dice left);")
+            print("2. Your dice are green, yellow and red with the count of each of them being the following: 6, 4 and 3;")
+            print("3. The green dice has 3 brains, 1 shotgun and 2 runners as sides, the yellow - 2 of each and the red - 1 brain, 3 shotguns and 2 runners;")
+            print("4. When you score at least 13 brains (or the highest brain score), you win. When you score 3 shotguns in one round (this count resets each round) you lose your accumulated brain score from this round. When you roll a runner, the dice is returned and you can roll it again on the next turn;")
+            print("5. In order to move on to the next turn, you have to type Yes/y/yes or any other string literal. If you wish to stop to the current turn and finish your round you have to type No/N/n/no;")
+            print("6. After the end of each player's round a table of the current statistics about the game will be shown in order for you to correctly plan your next moves!")
+            print("Enjoy playing the game!")
+            print("press enter when you are ready: ", terminator: "")
             
             guard let _ = readLine() else {
                 throw GameError.invalidInput
