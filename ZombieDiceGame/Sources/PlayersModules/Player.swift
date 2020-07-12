@@ -6,13 +6,13 @@ public enum PlayerError: Error {
 }
 
 public class Player: Comparable {
-    var brainScore: Int
-    var lastBrainScore: Int
-    var shotgunScore: Int
-    let name: String
+    private var brainScore: Int
+    private var lastBrainScore: Int
+    private var shotgunScore: Int
+    private let name: String
     private static var uniqueId: Int = 1
-    var id: Int
-    var cup: Cup
+    private var id: Int
+    private var cup: Cup
     
     public init(name: String) {
         self.name = name
@@ -24,10 +24,12 @@ public class Player: Comparable {
         self.lastBrainScore = 0
     }
     
+    // define this in order to comply with Comparable protocol
     public static func < (lhs: Player, rhs: Player) -> Bool {
         return lhs.id < rhs.id
     }
     
+    // this is also needed in order for the class to comply with Comparable protocol
     public static func == (lhs: Player, rhs: Player) -> Bool {
         return lhs.id == rhs.id
     }
@@ -41,7 +43,7 @@ public class Player: Comparable {
     }
     
     public func setBrainScore(newBrainScore: Int) {
-        brainScore = newBrainScore
+            brainScore = newBrainScore
     }
     
     func playOneTurn() {
