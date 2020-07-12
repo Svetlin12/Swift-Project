@@ -1,8 +1,8 @@
 import PlayersModules
 
 public class Table {
-    var playersInfo: Players
-    var playerMaxStringCnt: Int = 0
+    private var playersInfo: Players
+    private var playerMaxStringCnt: Int = 0
     
     public init (players: Players) {
         playersInfo = players
@@ -12,6 +12,7 @@ public class Table {
         playerMaxStringCnt = max(playerMaxStringCnt, "Player".count)
     }
     
+    // update the brain score of the last to play player
     public func updatePlayerInfo(_ player: Player) {
         playersInfo.players = playersInfo.players.filter( {
             if $0 == player {
@@ -33,6 +34,7 @@ public class Table {
         print(String.init(repeating: "-", count: playerMaxStringCnt * 2 + 6))
     }
     
+    // sugar coat the table so that the strings appear centered in the current column
     private func formatString(_ str: String) -> String {
         // this is always >= 0
         let diffInLen = playerMaxStringCnt - str.count
@@ -53,4 +55,3 @@ public class Table {
         return newStr
     }
 }
-
